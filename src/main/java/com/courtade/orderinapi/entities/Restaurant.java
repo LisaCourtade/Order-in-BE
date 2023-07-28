@@ -1,4 +1,4 @@
-package com.courtade.orderinapi.restaurant;
+package com.courtade.orderinapi.entities;
 
 import jakarta.persistence.*;
 

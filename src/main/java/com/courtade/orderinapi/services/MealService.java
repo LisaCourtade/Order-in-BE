@@ -1,7 +1,9 @@
-package com.courtade.orderinapi.meal;
+package com.courtade.orderinapi.services;
 
-import com.courtade.orderinapi.restaurant.Restaurant;
-import com.courtade.orderinapi.restaurant.RestaurantRepository;
+import com.courtade.orderinapi.entities.Meal;
+import com.courtade.orderinapi.entities.Restaurant;
+import com.courtade.orderinapi.repositories.MealRepository;
+import com.courtade.orderinapi.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,11 @@ public class MealService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    List<Meal> findAll() {
+    public List<Meal> findAll() {
         return mealRepository.findAll();
     };
 
-    List<Meal> findByRestaurantId(Integer id) {
+    public List<Meal> findByRestaurantId(Integer id) {
         Optional<Restaurant> result = restaurantRepository.findById(id);
         Restaurant restau = null;
         if (result.isPresent()) {
@@ -34,7 +36,7 @@ public class MealService {
         return mealRepository.findByRestaurant(restau);
     }
 
-    Meal findById(Integer id) {
+    public Meal findById(Integer id) {
         Optional<Meal> result = mealRepository.findById(id);
         Meal meal = null;
         if (result.isPresent()) {

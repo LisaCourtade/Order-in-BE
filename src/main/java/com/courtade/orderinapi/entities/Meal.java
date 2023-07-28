@@ -1,6 +1,5 @@
-package com.courtade.orderinapi.meal;
+package com.courtade.orderinapi.entities;
 
-import com.courtade.orderinapi.restaurant.Restaurant;
 import jakarta.persistence.*;
 
 @Entity

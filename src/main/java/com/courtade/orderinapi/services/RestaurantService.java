@@ -1,5 +1,7 @@
-package com.courtade.orderinapi.restaurant;
+package com.courtade.orderinapi.services;
 
+import com.courtade.orderinapi.entities.Restaurant;
+import com.courtade.orderinapi.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    List<Restaurant> findAll() {
+    public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     };
 
@@ -31,7 +33,7 @@ public class RestaurantService {
         return restaurant;
     }
 
-    Restaurant save(Restaurant restau) {
+    public Restaurant save(Restaurant restau) {
         return restaurantRepository.save(restau);
     }
 

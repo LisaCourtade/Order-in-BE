@@ -1,5 +1,7 @@
-package com.courtade.orderinapi.meal;
+package com.courtade.orderinapi.controllers;
 
+import com.courtade.orderinapi.entities.Meal;
+import com.courtade.orderinapi.services.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

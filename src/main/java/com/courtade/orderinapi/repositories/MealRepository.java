@@ -1,6 +1,7 @@
-package com.courtade.orderinapi.meal;
+package com.courtade.orderinapi.repositories;
 
-import com.courtade.orderinapi.restaurant.Restaurant;
+import com.courtade.orderinapi.entities.Meal;
+import com.courtade.orderinapi.entities.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
