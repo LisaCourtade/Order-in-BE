@@ -20,13 +20,18 @@ public class Restaurant {
     @Column(name="description")
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name="owner_id", referencedColumnName = "id")
+    private User user;
+
     public Restaurant() {
     }
 
-    public Restaurant(String name, String phoneNumber, String description) {
+    public Restaurant(String name, String phoneNumber, String description, User user) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
+        this.user = user;
     }
 
     public int getId() {
@@ -61,6 +66,14 @@ public class Restaurant {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -68,6 +81,7 @@ public class Restaurant {
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", description='" + description + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

@@ -23,7 +23,7 @@ public class Meal {
     private String category;
 
     @ManyToOne
-    @JoinColumn(name="restaurant_id")
+    @JoinColumn(name="restaurant_id", referencedColumnName = "id")
     private Restaurant restaurant;
 
     public Meal() {

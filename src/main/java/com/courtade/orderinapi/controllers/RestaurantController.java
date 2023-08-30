@@ -23,7 +23,7 @@ public class RestaurantController {
         return restaurantService.findAll();
     }
 
-    @GetMapping("/restaurant/{id}")
+    @GetMapping("/restaurants/{id}")
     public Restaurant getRestaurantById(@PathVariable int id) {
         Restaurant restaurant = restaurantService.findById(id);
         if (restaurant == null) {
@@ -42,7 +42,7 @@ public class RestaurantController {
         return restaurantService.save(restaurant);
     }
 
-    @DeleteMapping("/restaurant/{id}")
+    @DeleteMapping("/restaurants/{id}")
     public void deleteRestaurant(@PathVariable int id) {
         Restaurant restaurant = restaurantService.findById(id);
         if (restaurant == null) {
