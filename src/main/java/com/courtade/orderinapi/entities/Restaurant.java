@@ -20,6 +20,12 @@ public class Restaurant {
     @Column(name="description")
     private String description;
 
+    @Column(name="address")
+    private String address;
+
+    @Column(name="image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name="owner_id", referencedColumnName = "id")
     private User user;
@@ -27,10 +33,12 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String phoneNumber, String description, User user) {
+    public Restaurant(String name, String phoneNumber, String description, String address, String imageUrl, User user) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
+        this.address = address;
+        this.imageUrl = imageUrl;
         this.user = user;
     }
 
@@ -81,7 +89,25 @@ public class Restaurant {
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", user=" + user +
                 '}';
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
