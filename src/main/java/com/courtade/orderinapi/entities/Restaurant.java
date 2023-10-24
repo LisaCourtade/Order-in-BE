@@ -26,20 +26,19 @@ public class Restaurant {
     @Column(name="image_url")
     private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn(name="owner_id", referencedColumnName = "id")
-    private User user;
+    @Column(name="owner_id")
+    private int ownerId;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String phoneNumber, String description, String address, String imageUrl, User user) {
+    public Restaurant(String name, String phoneNumber, String description, String address, String imageUrl, int ownerId) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
         this.address = address;
         this.imageUrl = imageUrl;
-        this.user = user;
+        this.ownerId = ownerId;
     }
 
     public int getId() {
@@ -74,27 +73,6 @@ public class Restaurant {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", description='" + description + '\'' +
-                ", address='" + address + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", user=" + user +
-                '}';
-    }
-
     public String getAddress() {
         return address;
     }
@@ -109,5 +87,26 @@ public class Restaurant {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", ownerId=" + ownerId +
+                '}';
     }
 }

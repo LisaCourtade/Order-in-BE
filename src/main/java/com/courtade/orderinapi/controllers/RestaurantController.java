@@ -1,8 +1,12 @@
 package com.courtade.orderinapi.controllers;
 
+import com.courtade.orderinapi.dtos.RestaurantDTO;
 import com.courtade.orderinapi.entities.Restaurant;
+import com.courtade.orderinapi.entities.User;
 import com.courtade.orderinapi.services.RestaurantService;
+import com.courtade.orderinapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +17,12 @@ import java.util.List;
 public class RestaurantController {
 
     private RestaurantService restaurantService;
+    private UserService userService;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController(RestaurantService restaurantService, UserService userService) {
         this.restaurantService = restaurantService;
+        this.userService = userService;
     }
 
     @GetMapping("/restaurants")
@@ -34,8 +40,18 @@ public class RestaurantController {
     }
 
     @PostMapping("/restaurants")
-    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
-        return restaurantService.save(restaurant);
+    public RestaurantDTO createRestaurant(@RequestBody Restaurant restaurant) {
+        User user = userService.findById(restaurant.getOwnerId());
+        RestaurantDTO restaurantDTO = new RestaurantDTO();
+        if (user == null) {
+            restaurantDTO.setHttpStatus(HttpStatus.BAD_REQUEST);
+            restaurantDTO.setRestaurant(null);
+            return restaurantDTO;
+        }
+        restaurantDTO.setHttpStatus(HttpStatus.OK);
+        restaurantDTO.setRestaurant(restaurantService.save(restaurant));
+
+        return restaurantDTO;
     }
 
     @PutMapping("/restaurants")

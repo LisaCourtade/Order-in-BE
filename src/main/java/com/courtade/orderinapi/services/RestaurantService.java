@@ -33,8 +33,8 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public Restaurant save(Restaurant restau) {
-        return restaurantRepository.save(restau);
+    public Restaurant save(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 
     public void deleteById(int id) {
