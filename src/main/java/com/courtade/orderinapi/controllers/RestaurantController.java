@@ -31,12 +31,18 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants/{id}")
-    public Restaurant getRestaurantById(@PathVariable int id) {
+    public RestaurantDTO getRestaurantById(@PathVariable int id) {
         Restaurant restaurant = restaurantService.findById(id);
+        RestaurantDTO restaurantDTO = new RestaurantDTO();
         if (restaurant == null) {
-            throw new RuntimeException("Restaurant id not found " + id);
+            restaurantDTO.setHttpStatus(HttpStatus.NOT_FOUND);
+            restaurantDTO.setRestaurant(null);
+            return restaurantDTO;
         }
-        return restaurant;
+        restaurantDTO.setHttpStatus(HttpStatus.OK);
+        restaurantDTO.setRestaurant(restaurant);
+
+        return restaurantDTO;
     }
 
     @PostMapping("/restaurants")

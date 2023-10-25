@@ -1,20 +1,28 @@
 package com.courtade.orderinapi.controllers;
 
+import com.courtade.orderinapi.dtos.MealsDTO;
 import com.courtade.orderinapi.entities.Meal;
+import com.courtade.orderinapi.entities.Restaurant;
 import com.courtade.orderinapi.services.MealService;
+import com.courtade.orderinapi.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api")
 public class MealController {
 
     private MealService mealService;
+    private RestaurantService restaurantService;
+
     @Autowired
-    public MealController(MealService mealService) {
+    public MealController(MealService mealService, RestaurantService restaurantService) {
         this.mealService = mealService;
+        this.restaurantService = restaurantService;
     }
 
     @GetMapping("/meals")
@@ -23,8 +31,17 @@ public class MealController {
     }
 
     @GetMapping("/meals/restaurant/{id}")
-    public List<Meal> getMealsByRestaurant(@PathVariable int id) {
-        return mealService.findByRestaurantId(id);
+    public MealsDTO getMealsByRestaurant(@PathVariable int id) {
+        Restaurant restaurant = restaurantService.findById(id);
+        MealsDTO mealsDTO = new MealsDTO();
+        if (restaurant == null) {
+            mealsDTO.setHttpStatus(HttpStatus.NOT_FOUND);
+            mealsDTO.setMeals(null);
+            return mealsDTO;
+        }
+        mealsDTO.setHttpStatus(HttpStatus.OK);
+        mealsDTO.setMeals(mealService.findByRestaurantId(id));
+        return mealsDTO;
     }
 
     @GetMapping("/meals/{id}")

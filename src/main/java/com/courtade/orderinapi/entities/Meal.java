@@ -19,6 +19,9 @@ public class Meal {
     @Column(name="ingredients")
     private String ingredients;
 
+    @Column(name="image_url")
+    private String imageUrl;
+
     @Column(name="category")
     private String category;
 
@@ -29,10 +32,11 @@ public class Meal {
     public Meal() {
     }
 
-    public Meal(String name, double price, String ingredients, String category, Restaurant restaurant) {
+    public Meal(String name, double price, String ingredients, String imageUrl, String category, Restaurant restaurant) {
         this.name = name;
         this.price = price;
         this.ingredients = ingredients;
+        this.imageUrl = imageUrl;
         this.category = category;
         this.restaurant = restaurant;
     }
@@ -83,5 +87,13 @@ public class Meal {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
